@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MovingCube : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class MovingCube : MonoBehaviour
 
         CurrentCube = this;
         GetComponent<Renderer>().material.color = GetRandomColor();
+
+        transform.localScale = new Vector3(LastCube.transform.localScale.x, transform.localScale.y, LastCube.transform.localScale.z);
+
     }
 
     private Color GetRandomColor()
@@ -37,6 +41,12 @@ public class MovingCube : MonoBehaviour
 
         float direction = hangover > 0f ? 1f : -1f;
         SplitCubeOnZ(hangover, direction);
+        if (Mathf.Abs (hangover)>= LastCube.transform.localScale.z)
+        {
+            LastCube = null;
+            CurrentCube = null;
+            SceneManager.LoadScene(0);
+        }
     }
 
     private void SplitCubeOnZ(float hangover, float direction)
