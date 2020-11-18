@@ -29,7 +29,6 @@ public class CubeSpawner : MonoBehaviour
         }
         else
         {
-
             cube.transform.position = transform.position;
         }
         

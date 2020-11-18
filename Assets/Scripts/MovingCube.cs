@@ -38,9 +38,9 @@ public class MovingCube : MonoBehaviour
         moveSpeed = 0;
 
         float hangover = transform.position.z - LastCube.transform.position.z;
-
         float direction = hangover > 0f ? 1f : -1f;
         SplitCubeOnZ(hangover, direction);
+
         if (Mathf.Abs (hangover)>= LastCube.transform.localScale.z)
         {
             LastCube = null;
